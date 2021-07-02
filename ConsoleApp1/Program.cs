@@ -1,33 +1,43 @@
 ﻿using System;
-
-namespace ConsoleApp1
+using System.Runtime.InteropServices;
+namespace home_work_1
 {
     class Program
     {
-        static void Main(string[] args)
+        [DllImport("msvcrt.dll")]
+        static extern char _getch();
+        static void Main()
         {
-            Console.Write("Задача 1!\nВведите текст: ");
-            string[] TextMass;
-            string text = Console.ReadLine();
-
-            Console.ReadKey(true);
-            TextMass = text.Split(' ');
-            Console.WriteLine($"Количество пробелов в тексте: {TextMass.Length - 1}");
-            Console.WriteLine($"Количесво символов в тексте: {text.Length}");              
+            Console.WriteLine($"Task 1!\nEnter the text: ");
+                int wdcount=0;
+                int chcount = 0;
+                char text='a';
+            do
+            {
+                text = _getch();
+                if (text == ' ')
+                    wdcount++;
+                else
+                    chcount++;
+                Console.WriteLine($"{(int)text}\t{text}");
+            } while (text != '.');
+           
+            Console.WriteLine($"Number of spaces is: {wdcount}");
+            Console.WriteLine($"number of letter is: {chcount-1}");                  
 
             string word;
-            Console.Write("Задача 2!\nВведите строку в нижним регистре: "); word = Console.ReadLine();            
+            Console.Write("Task 2!\nEnter a string in lower case: "); word = Console.ReadLine();            
             Console.WriteLine($"{word.ToUpper()}");
             string word_1;
-            Console.Write("Введите строку в верхним регистре: "); word_1 = Console.ReadLine();
+            Console.Write("Enter a string in upper case: "); word_1 = Console.ReadLine();
             Console.WriteLine($"{word_1.ToLower()}");
 
             int a, b;
-            Console.Write("Задача 3!\nВведите число: "); a = Convert.ToInt32(Console.ReadLine());
-            Console.Write($"Введите число больше '{a}': "); b = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Task 3!\nEnter the number: "); a = Convert.ToInt32(Console.ReadLine());
+            Console.Write($"Enter the number greater than '{a}': "); b = Convert.ToInt32(Console.ReadLine());
             third_homework(a, b);
             Console.WriteLine("-----------------------------------------------------------");
-            Console.WriteLine("Задача 4!\n");
+            Console.WriteLine("Task 4!\n");
             int M = 5, N = 6;
             int[] array_1 = new int[M];
             int[] array_2 = new int[N];
@@ -41,30 +51,42 @@ namespace ConsoleApp1
             FullArray(array_1, array_2, array_3);
             PrintArray(array_3);
             Console.WriteLine("-----------------------------------------------------------");
-            int number;
-            Console.Write("Задача 5!\nВведите число: "); number=Convert.ToInt32(Console.ReadLine());
-            int reverse_number=0;
-            int buffer = number;
-            while(buffer>0)
+            
+                int number;
+                string again;
+                Console.Write("Task 5!\n");
+            do
             {
-                reverse_number *= 10;
-                reverse_number += buffer % 10;
-                buffer /= 10;
-            }
-            if(number==reverse_number)
-            {
-                Console.WriteLine("Число является палиндромом!!!!");
-            }
-            else
-            {
-                Console.WriteLine("Число не является палиндромом!!!!");
-            }
+                Console.Write("Enter the number: "); number=Convert.ToInt32(Console.ReadLine());
+                int reverse_number = 0;
+                int buffer = number;
+                while (buffer > 0)
+                {
+                    reverse_number *= 10;
+                    reverse_number += buffer % 10;
+                    buffer /= 10;
+                }
+                if (number == reverse_number)
+                {
+                    Console.WriteLine("The number is a palindrome!!!!");
+                }
+                else
+                {
+                    Console.WriteLine("The number is not a palindrome!!!!");
+                }
+                Console.WriteLine($"Again????(Please answer 'yes' or 'no'): ");
+                again = Console.ReadLine();
+                if (again == "yes") continue;
+                else if (again == "no") continue;
+                else
+                    Console.WriteLine("Your answer is not correct!!!!");break;
+            } while (again != "no");
 
-            Console.WriteLine("Задача 6!\nВведите текст: ");
+            Console.WriteLine("Task 6!\nEnter the text: ");
             string[] TextMassiv;
             string text_1; text_1 = Console.ReadLine();
-            TextMassiv = text.Split(' ');
-            Console.WriteLine($"Количество слов в тексте: {TextMassiv.Length}");
+            TextMassiv = text_1.Split(' ');
+            Console.WriteLine($"Number of words in the text: {TextMassiv.Length}");
         }
         static void third_homework(int a, int b)
         {
