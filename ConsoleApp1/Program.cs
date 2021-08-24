@@ -87,6 +87,7 @@ namespace home_work_1
             string text_1; text_1 = Console.ReadLine();
             TextMassiv = text_1.Split(' ');
             Console.WriteLine($"Number of words in the text: {TextMassiv.Length}");
+
         }
         static void third_homework(int a, int b)
         {
